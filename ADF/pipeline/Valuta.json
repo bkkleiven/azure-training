@@ -1,6 +1,7 @@
 {
 	"name": "Valuta",
 	"properties": {
+		"description": "description",
 		"activities": [
 			{
 				"name": "Norges bank",
