@@ -11,6 +11,12 @@
 		"RawValuta_properties_typeProperties_folderPath": {
 			"value": "raw"
 		},
+		"AzureKeyVault1_properties_typeProperties_baseUrl": {
+			"value": "https://hasakeyvaultdev.vault.azure.net/"
+		},
+		"AzureSqlDatabase1_properties_typeProperties_connectionString_secretName": {
+			"value": "hasasqlconnect"
+		},
 		"HasaDataLakeDev_properties_typeProperties_dataLakeStoreUri": {
 			"value": "https://hasadldev.azuredatalakestore.net/webhdfs/v1"
 		},
