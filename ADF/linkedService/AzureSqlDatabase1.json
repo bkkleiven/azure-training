@@ -1,0 +1,16 @@
+{
+	"name": "AzureSqlDatabase1",
+	"properties": {
+		"type": "AzureSqlDatabase",
+		"typeProperties": {
+			"connectionString": {
+				"type": "AzureKeyVaultSecret",
+				"store": {
+					"referenceName": "AzureKeyVault1",
+					"type": "LinkedServiceReference"
+				},
+				"secretName": "hasasqlconnect"
+			}
+		}
+	}
+}
