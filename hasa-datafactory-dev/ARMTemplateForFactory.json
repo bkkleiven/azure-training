@@ -7,6 +7,30 @@
 			"metadata": "Data Factory Name",
 			"defaultValue": "hasa-datafactory-dev"
 		},
+		"RawValuta_properties_typeProperties_fileName": {
+			"type": "string",
+			"defaultValue": ""
+		},
+		"RawValuta_properties_typeProperties_folderPath": {
+			"type": "string",
+			"defaultValue": "raw"
+		},
+		"HasaDataLakeDev_properties_typeProperties_dataLakeStoreUri": {
+			"type": "string",
+			"defaultValue": "https://hasadldev.azuredatalakestore.net/webhdfs/v1"
+		},
+		"HasaDataLakeDev_properties_typeProperties_tenant": {
+			"type": "string",
+			"defaultValue": "3aa4a235-b6e2-48d5-9195-7fcf05b459b0"
+		},
+		"HasaDataLakeDev_properties_typeProperties_subscriptionId": {
+			"type": "string",
+			"defaultValue": "5025a3e4-a4b9-4786-b358-390ea614614b"
+		},
+		"HasaDataLakeDev_properties_typeProperties_resourceGroupName": {
+			"type": "string",
+			"defaultValue": "hasarg"
+		},
 		"NorgesBank_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://data.norges-bank.no/api/data/EXR/B..NOK.SP?lastNObservations=1&format=sdmx-json "
@@ -16,6 +40,58 @@
 		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
 	},
 	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/pipeline1')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Norges bank",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "HttpSource",
+								"httpRequestTimeout": "00:01:40"
+							},
+							"sink": {
+								"type": "AzureDataLakeStoreSink"
+							},
+							"enableStaging": false,
+							"dataIntegrationUnits": 0
+						},
+						"inputs": [
+							{
+								"referenceName": "HttpFile1",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "RawValuta",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					}
+				],
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/HttpFile1')]",
+				"[concat(variables('factoryId'), '/datasets/RawValuta')]"
+			]
+		},
 		{
 			"name": "[concat(parameters('factoryName'), '/HttpFile1')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
@@ -43,6 +119,51 @@
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/NorgesBank')]"
 			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/RawValuta')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "HasaDataLakeDev",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureDataLakeStoreFile",
+				"typeProperties": {
+					"format": {
+						"type": "TextFormat",
+						"columnDelimiter": ",",
+						"rowDelimiter": "",
+						"nullValue": "\\N",
+						"treatEmptyAsNull": true,
+						"skipLineCount": 0,
+						"firstRowAsHeader": false
+					},
+					"fileName": "[parameters('RawValuta_properties_typeProperties_fileName')]",
+					"folderPath": "[parameters('RawValuta_properties_typeProperties_folderPath')]"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/HasaDataLakeDev')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/HasaDataLakeDev')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureDataLakeStore",
+				"typeProperties": {
+					"dataLakeStoreUri": "[parameters('HasaDataLakeDev_properties_typeProperties_dataLakeStoreUri')]",
+					"tenant": "[parameters('HasaDataLakeDev_properties_typeProperties_tenant')]",
+					"subscriptionId": "[parameters('HasaDataLakeDev_properties_typeProperties_subscriptionId')]",
+					"resourceGroupName": "[parameters('HasaDataLakeDev_properties_typeProperties_resourceGroupName')]"
+				}
+			},
+			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/NorgesBank')]",

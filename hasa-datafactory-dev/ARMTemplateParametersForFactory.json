@@ -5,6 +5,24 @@
 		"factoryName": {
 			"value": "hasa-datafactory-dev"
 		},
+		"RawValuta_properties_typeProperties_fileName": {
+			"value": ""
+		},
+		"RawValuta_properties_typeProperties_folderPath": {
+			"value": "raw"
+		},
+		"HasaDataLakeDev_properties_typeProperties_dataLakeStoreUri": {
+			"value": "https://hasadldev.azuredatalakestore.net/webhdfs/v1"
+		},
+		"HasaDataLakeDev_properties_typeProperties_tenant": {
+			"value": "3aa4a235-b6e2-48d5-9195-7fcf05b459b0"
+		},
+		"HasaDataLakeDev_properties_typeProperties_subscriptionId": {
+			"value": "5025a3e4-a4b9-4786-b358-390ea614614b"
+		},
+		"HasaDataLakeDev_properties_typeProperties_resourceGroupName": {
+			"value": "hasarg"
+		},
 		"NorgesBank_properties_typeProperties_url": {
 			"value": "https://data.norges-bank.no/api/data/EXR/B..NOK.SP?lastNObservations=1&format=sdmx-json "
 		}
