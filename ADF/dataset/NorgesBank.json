@@ -1,5 +1,5 @@
 {
-	"name": "HttpFile1",
+	"name": "NorgesBank",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "NorgesBank",

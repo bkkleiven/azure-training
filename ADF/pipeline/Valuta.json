@@ -26,7 +26,7 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "HttpFile1",
+						"referenceName": "NorgesBank",
 						"type": "DatasetReference"
 					}
 				],
