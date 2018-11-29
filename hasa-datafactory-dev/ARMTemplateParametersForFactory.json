@@ -5,6 +5,12 @@
 		"factoryName": {
 			"value": "hasa-datafactory-dev"
 		},
+		"RawOD_properties_typeProperties_fileName": {
+			"value": ""
+		},
+		"RawOD_properties_typeProperties_folderPath": {
+			"value": "raw/Oljedirektoratet"
+		},
 		"RawValuta_properties_typeProperties_fileName": {
 			"value": ""
 		},
@@ -31,6 +37,9 @@
 		},
 		"NorgesBank_properties_typeProperties_url": {
 			"value": "https://data.norges-bank.no/api/data/EXR/B..NOK.SP?lastNObservations=1&format=sdmx-json "
+		},
+		"Oljedirektoratet_properties_typeProperties_url": {
+			"value": "http://hotell.difi.no/api/csv/npd/licence/overview?"
 		}
 	}
 }
