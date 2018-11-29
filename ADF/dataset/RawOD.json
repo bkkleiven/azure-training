@@ -1,0 +1,23 @@
+{
+	"name": "RawOD",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "HasaDataLakeDev",
+			"type": "LinkedServiceReference"
+		},
+		"type": "AzureDataLakeStoreFile",
+		"typeProperties": {
+			"format": {
+				"type": "TextFormat",
+				"columnDelimiter": ",",
+				"rowDelimiter": "",
+				"nullValue": "\\N",
+				"treatEmptyAsNull": true,
+				"skipLineCount": 0,
+				"firstRowAsHeader": false
+			},
+			"fileName": "",
+			"folderPath": "raw/Oljedirektoratet"
+		}
+	}
+}
