@@ -1,0 +1,12 @@
+{
+	"name": "StatensSatser",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"type": "HttpServer",
+		"typeProperties": {
+			"url": "https://hotell.difi.no/api/csv/statens-satser/utland/2018?",
+			"enableServerCertificateValidation": true,
+			"authenticationType": "Anonymous"
+		}
+	}
+}
