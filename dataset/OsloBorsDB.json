@@ -1,0 +1,36 @@
+{
+	"name": "OsloBorsDB",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "hasatestdb",
+			"type": "LinkedServiceReference"
+		},
+		"type": "AzureSqlTable",
+		"structure": [
+			{
+				"name": "OSEBX",
+				"type": "String"
+			},
+			{
+				"name": "siste",
+				"type": "Decimal"
+			},
+			{
+				"name": "lav",
+				"type": "Decimal"
+			},
+			{
+				"name": "høy",
+				"type": "Decimal"
+			},
+			{
+				"name": "omsetning",
+				"type": "String"
+			}
+		],
+		"typeProperties": {
+			"tableName": "[hasa].[obx]"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

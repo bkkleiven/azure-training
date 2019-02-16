@@ -1,0 +1,10 @@
+{
+	"name": "hasatestBS",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"type": "AzureBlobStorage",
+		"typeProperties": {
+			"serviceEndpoint": "https://hasateststg.blob.core.windows.net"
+		}
+	}
+}

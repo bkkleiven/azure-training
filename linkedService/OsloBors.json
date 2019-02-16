@@ -1,0 +1,10 @@
+{
+	"name": "OsloBors",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"type": "AzureSqlDatabase",
+		"typeProperties": {
+			"connectionString": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=hasatestdbsrv.database.windows.net;Initial Catalog=hasatestdb"
+		}
+	}
+}

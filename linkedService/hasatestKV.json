@@ -1,0 +1,10 @@
+{
+	"name": "hasatestKV",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"type": "AzureKeyVault",
+		"typeProperties": {
+			"baseUrl": "https://hasatestkv.vault.azure.net/"
+		}
+	}
+}

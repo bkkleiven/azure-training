@@ -1,0 +1,12 @@
+{
+	"name": "Oslo_bors",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"type": "HttpServer",
+		"typeProperties": {
+			"url": "https://www.oslobors.no/ob/servlets/excel?type=history&columns=DATE%2C+CLOSE%2C+HIGH%2C+LOW%2C+TURNOVER_TOTAL&format[DATE]=ddd.mm.YY&format[CLOSE]=%23%2C%23%230.00%23%23%23&format[BID]=%23%2C%23%230.00%23%23&format[ASK]=%23%2C%23%230.00%23%23&format[HIGH]=%23%2C%23%230.00%23%23%23&format[LOW]=%23%2C%23%230.00%23%23%23&format[TURNOVER_TOTAL]=%23%2C%23%230.00%23%23%23&header[DATE]=OSEBX&header[CLOSE]=Siste&header[BID]=Kj%C3%B8per&header[ASK]=Selger&header[HIGH]=H%C3%B8y&header[LOW]=Lav&header[TURNOVER_TOTAL]=Offisielt%20omsatt%20%28NOK%29&view=DELAYED&source=feed.ob.index.INDICES_SHARES&filter=ITEM_SECTOR%3D%3DsOSEBX.OSE%26%26DELETED!%3Dn1&stop=now&start=1392505200000&space=DAY&ascending=true&filename=data.xlsx",
+			"enableServerCertificateValidation": true,
+			"authenticationType": "Anonymous"
+		}
+	}
+}
