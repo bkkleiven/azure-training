@@ -7,7 +7,7 @@
     <Name>OBX</Name>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectVersion>4.1</ProjectVersion>
-    <ProjectGuid>{aaad8d3a-9772-43ee-a43a-97af50b7299c}</ProjectGuid>
+    <ProjectGuid>{ce47bfa8-632b-4d70-8191-2573f022e95b}</ProjectGuid>
     <DSP>Microsoft.Data.Tools.Schema.Sql.Sql130DatabaseSchemaProvider</DSP>
     <OutputType>Database</OutputType>
     <RootPath>
