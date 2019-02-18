@@ -7,6 +7,7 @@
     [change]            VARCHAR (20) NULL,
     [open]              VARCHAR (20) NULL,
     [low]               VARCHAR (20) NULL,
+	[high]	            VARCHAR (20) NULL,
     [prev_price]        VARCHAR (20) NULL,
     [volume]            VARCHAR (20) NULL,
     [bid_depth_total]   VARCHAR (20) NULL,
