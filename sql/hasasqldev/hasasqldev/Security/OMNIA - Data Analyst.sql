@@ -1,0 +1,2 @@
+﻿CREATE USER [OMNIA - Data Analyst] FOR EXTERNAL PROVIDER;
+

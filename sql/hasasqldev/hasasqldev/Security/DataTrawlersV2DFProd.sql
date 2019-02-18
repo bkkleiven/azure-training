@@ -1,0 +1,2 @@
+﻿CREATE USER [DataTrawlersV2DFProd] FOR EXTERNAL PROVIDER;
+
