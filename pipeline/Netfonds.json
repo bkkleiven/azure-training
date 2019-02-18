@@ -30,7 +30,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "OsloBorsBlob",
+						"referenceName": "Netfondsblob",
 						"type": "DatasetReference"
 					}
 				]
