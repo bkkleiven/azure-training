@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.329
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "OBX", "OBX\OBX.sqlproj", "{CE47BFA8-632B-4D70-8191-2573F022E95B}"
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "OSEBX", "OBX\OSEBX.sqlproj", "{CE47BFA8-632B-4D70-8191-2573F022E95B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
