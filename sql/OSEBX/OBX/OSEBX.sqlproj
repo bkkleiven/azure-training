@@ -64,7 +64,7 @@
     <Folder Include="Security\" />
   </ItemGroup>
   <ItemGroup>
-    <Build Include="hasa\Tables\obx.sql" />
+    <Build Include="hasa\Tables\osebx.sql" />
     <Build Include="Security\hasa.sql" />
   </ItemGroup>
 </Project>
