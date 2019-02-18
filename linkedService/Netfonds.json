@@ -1,0 +1,12 @@
+{
+	"name": "Netfonds",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"type": "HttpServer",
+		"typeProperties": {
+			"url": "https://www.netfonds.no/quotes/paperhistory.php?paper=EQNR.OSE&csv_format=csv",
+			"enableServerCertificateValidation": true,
+			"authenticationType": "Anonymous"
+		}
+	}
+}

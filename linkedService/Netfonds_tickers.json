@@ -1,0 +1,12 @@
+{
+	"name": "Netfonds_tickers",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"type": "HttpServer",
+		"typeProperties": {
+			"url": "https://www.netfonds.no/quotes/kurs.php?exchange=OSE&sec_types=&sectors=&ticks=&table=tab&sort=alphabetic",
+			"enableServerCertificateValidation": true,
+			"authenticationType": "Anonymous"
+		}
+	}
+}
