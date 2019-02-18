@@ -5,6 +5,9 @@
 			"referenceName": "NetfondsDB",
 			"type": "LinkedServiceReference"
 		},
-		"type": "AzureSqlTable"
+		"type": "AzureSqlTable",
+		"typeProperties": {
+			"tableName": "[hasa].[netfonds]"
+		}
 	}
 }
