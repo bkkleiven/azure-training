@@ -1,0 +1,9 @@
+{
+	"name": "hasaKV",
+	"properties": {
+		"type": "AzureKeyVault",
+		"typeProperties": {
+			"baseUrl": "https://hasaKeyVault.vault.azure.net/"
+		}
+	}
+}
