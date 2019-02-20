@@ -2,7 +2,7 @@
 	"name": "OsloBorsBlob",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "hasatestBS",
+			"referenceName": "hasaBS",
 			"type": "LinkedServiceReference"
 		},
 		"type": "AzureBlob",
