@@ -40,6 +40,10 @@
 				"type": "String"
 			},
 			{
+				"name": "high",
+				"type": "String"
+			},
+			{
 				"name": "prev_price",
 				"type": "String"
 			},
