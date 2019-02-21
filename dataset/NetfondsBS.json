@@ -16,8 +16,8 @@
 				"skipLineCount": 0,
 				"firstRowAsHeader": false
 			},
-			"fileName": "netfonds",
-			"folderPath": "raw"
+			"fileName": "ticker",
+			"folderPath": "raw/netfonds"
 		}
 	}
 }
