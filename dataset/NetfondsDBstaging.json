@@ -1,6 +1,10 @@
 {
 	"name": "NetfondsDBstaging",
 	"properties": {
+		"linkedServiceName": {
+			"referenceName": "hasaDB",
+			"type": "LinkedServiceReference"
+		},
 		"type": "AzureSqlTable",
 		"structure": [
 			{
