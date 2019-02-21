@@ -1,10 +1,6 @@
 {
 	"name": "NetfondsDBstaging",
 	"properties": {
-		"linkedServiceName": {
-			"referenceName": "NetfondsDB",
-			"type": "LinkedServiceReference"
-		},
 		"type": "AzureSqlTable",
 		"structure": [
 			{
