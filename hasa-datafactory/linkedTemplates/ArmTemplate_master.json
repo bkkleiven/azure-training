@@ -1,0 +1,112 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory Name",
+			"defaultValue": "hasa-datafactory"
+		},
+		"hasaDB_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'hasaDB'"
+		},
+		"NetfondsBS_properties_typeProperties_fileName": {
+			"type": "string",
+			"defaultValue": "ticker"
+		},
+		"NetfondsBS_properties_typeProperties_folderPath": {
+			"type": "string",
+			"defaultValue": "raw/netfonds"
+		},
+		"OsloBorsBlob_properties_typeProperties_fileName": {
+			"type": "string",
+			"defaultValue": "OsloBors5ar.csv"
+		},
+		"OsloBorsBlob_properties_typeProperties_folderPath": {
+			"type": "string",
+			"defaultValue": "raw"
+		},
+		"Netfonds_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://www.netfonds.no/quotes/paperhistory.php?paper=EQNR.OSE&csv_format=csv"
+		},
+		"Netfonds_tickers_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://www.netfonds.no/quotes/kurs.php?exchange=OSE&sec_types=&sectors=&ticks=&table=tab&sort=alphabetic"
+		},
+		"Oslo_bors_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://www.oslobors.no/ob/servlets/excel?type=history&columns=DATE%2C+CLOSE%2C+HIGH%2C+LOW%2C+TURNOVER_TOTAL&format[DATE]=ddd.mm.YY&format[CLOSE]=%23%2C%23%230.00%23%23%23&format[BID]=%23%2C%23%230.00%23%23&format[ASK]=%23%2C%23%230.00%23%23&format[HIGH]=%23%2C%23%230.00%23%23%23&format[LOW]=%23%2C%23%230.00%23%23%23&format[TURNOVER_TOTAL]=%23%2C%23%230.00%23%23%23&header[DATE]=OSEBX&header[CLOSE]=Siste&header[BID]=Kj%C3%B8per&header[ASK]=Selger&header[HIGH]=H%C3%B8y&header[LOW]=Lav&header[TURNOVER_TOTAL]=Offisielt%20omsatt%20%28NOK%29&view=DELAYED&source=feed.ob.index.INDICES_SHARES&filter=ITEM_SECTOR%3D%3DsOSEBX.OSE%26%26DELETED!%3Dn1&stop=now&start=1392505200000&space=DAY&ascending=true&filename=data.xlsx"
+		},
+		"hasaBS_properties_typeProperties_serviceEndpoint": {
+			"type": "string",
+			"defaultValue": "https://hasastg.blob.core.windows.net"
+		},
+		"hasaKV_properties_typeProperties_baseUrl": {
+			"type": "string",
+			"defaultValue": "https://hasaKeyVault.vault.azure.net/"
+		},
+		"containerUri": {
+			"type": "string",
+			"metadata": "URI to storage account containing linked ARM templates"
+		},
+		"containerSasToken": {
+			"type": "string",
+			"metadata": "Sas Token to storage account containing linked ARM templates"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "ArmTemplate_0",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_0.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"hasaDB_connectionString": {
+						"value": "[parameters('hasaDB_connectionString')]"
+					},
+					"Netfonds_properties_typeProperties_url": {
+						"value": "[parameters('Netfonds_properties_typeProperties_url')]"
+					},
+					"Netfonds_tickers_properties_typeProperties_url": {
+						"value": "[parameters('Netfonds_tickers_properties_typeProperties_url')]"
+					},
+					"Oslo_bors_properties_typeProperties_url": {
+						"value": "[parameters('Oslo_bors_properties_typeProperties_url')]"
+					},
+					"hasaBS_properties_typeProperties_serviceEndpoint": {
+						"value": "[parameters('hasaBS_properties_typeProperties_serviceEndpoint')]"
+					},
+					"hasaKV_properties_typeProperties_baseUrl": {
+						"value": "[parameters('hasaKV_properties_typeProperties_baseUrl')]"
+					},
+					"NetfondsBS_properties_typeProperties_fileName": {
+						"value": "[parameters('NetfondsBS_properties_typeProperties_fileName')]"
+					},
+					"NetfondsBS_properties_typeProperties_folderPath": {
+						"value": "[parameters('NetfondsBS_properties_typeProperties_folderPath')]"
+					},
+					"OsloBorsBlob_properties_typeProperties_fileName": {
+						"value": "[parameters('OsloBorsBlob_properties_typeProperties_fileName')]"
+					},
+					"OsloBorsBlob_properties_typeProperties_folderPath": {
+						"value": "[parameters('OsloBorsBlob_properties_typeProperties_folderPath')]"
+					}
+				}
+			},
+			"dependsOn": []
+		}
+	]
+}

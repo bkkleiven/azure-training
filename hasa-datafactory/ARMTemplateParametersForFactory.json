@@ -1,0 +1,39 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "hasa-datafactory"
+		},
+		"hasaDB_connectionString": {
+			"value": ""
+		},
+		"NetfondsBS_properties_typeProperties_fileName": {
+			"value": "ticker"
+		},
+		"NetfondsBS_properties_typeProperties_folderPath": {
+			"value": "raw/netfonds"
+		},
+		"OsloBorsBlob_properties_typeProperties_fileName": {
+			"value": "OsloBors5ar.csv"
+		},
+		"OsloBorsBlob_properties_typeProperties_folderPath": {
+			"value": "raw"
+		},
+		"Netfonds_properties_typeProperties_url": {
+			"value": "https://www.netfonds.no/quotes/paperhistory.php?paper=EQNR.OSE&csv_format=csv"
+		},
+		"Netfonds_tickers_properties_typeProperties_url": {
+			"value": "https://www.netfonds.no/quotes/kurs.php?exchange=OSE&sec_types=&sectors=&ticks=&table=tab&sort=alphabetic"
+		},
+		"Oslo_bors_properties_typeProperties_url": {
+			"value": "https://www.oslobors.no/ob/servlets/excel?type=history&columns=DATE%2C+CLOSE%2C+HIGH%2C+LOW%2C+TURNOVER_TOTAL&format[DATE]=ddd.mm.YY&format[CLOSE]=%23%2C%23%230.00%23%23%23&format[BID]=%23%2C%23%230.00%23%23&format[ASK]=%23%2C%23%230.00%23%23&format[HIGH]=%23%2C%23%230.00%23%23%23&format[LOW]=%23%2C%23%230.00%23%23%23&format[TURNOVER_TOTAL]=%23%2C%23%230.00%23%23%23&header[DATE]=OSEBX&header[CLOSE]=Siste&header[BID]=Kj%C3%B8per&header[ASK]=Selger&header[HIGH]=H%C3%B8y&header[LOW]=Lav&header[TURNOVER_TOTAL]=Offisielt%20omsatt%20%28NOK%29&view=DELAYED&source=feed.ob.index.INDICES_SHARES&filter=ITEM_SECTOR%3D%3DsOSEBX.OSE%26%26DELETED!%3Dn1&stop=now&start=1392505200000&space=DAY&ascending=true&filename=data.xlsx"
+		},
+		"hasaBS_properties_typeProperties_serviceEndpoint": {
+			"value": "https://hasastg.blob.core.windows.net"
+		},
+		"hasaKV_properties_typeProperties_baseUrl": {
+			"value": "https://hasaKeyVault.vault.azure.net/"
+		}
+	}
+}

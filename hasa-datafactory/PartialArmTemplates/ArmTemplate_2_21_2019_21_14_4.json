@@ -1,0 +1,415 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory Name",
+			"defaultValue": "hasa-datafactory"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/Netfonds')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Netfonds to blob",
+						"type": "Copy",
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"typeProperties": {
+							"source": {
+								"type": "HttpSource",
+								"httpRequestTimeout": "00:01:40"
+							},
+							"sink": {
+								"type": "BlobSink"
+							},
+							"enableStaging": false
+						},
+						"inputs": [
+							{
+								"referenceName": "Netfonds_tickers",
+								"type": "DatasetReference"
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "NetfondsBS",
+								"type": "DatasetReference"
+							}
+						]
+					},
+					{
+						"name": "Blob to staging",
+						"type": "Copy",
+						"dependsOn": [
+							{
+								"activity": "Netfonds to blob",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "0.00:05:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"typeProperties": {
+							"source": {
+								"type": "BlobSource",
+								"recursive": true
+							},
+							"sink": {
+								"type": "SqlSink",
+								"writeBatchSize": 10000
+							},
+							"enableStaging": false
+						},
+						"inputs": [
+							{
+								"referenceName": "NetfondsBS",
+								"type": "DatasetReference"
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "NetfondsDBstaging",
+								"type": "DatasetReference"
+							}
+						]
+					}
+				]
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/Netfonds_tickers')]",
+				"[concat(variables('factoryId'), '/datasets/NetfondsBS')]",
+				"[concat(variables('factoryId'), '/datasets/NetfondsDBstaging')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/OSEBX')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Copy Data to database",
+						"type": "Copy",
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"typeProperties": {
+							"source": {
+								"type": "BlobSource",
+								"recursive": true
+							},
+							"sink": {
+								"type": "SqlSink",
+								"writeBatchSize": 10000
+							},
+							"enableStaging": false
+						},
+						"inputs": [
+							{
+								"referenceName": "OsloBorsBlob",
+								"type": "DatasetReference"
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "OsloBorsDB",
+								"type": "DatasetReference"
+							}
+						]
+					}
+				]
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/OsloBorsBlob')]",
+				"[concat(variables('factoryId'), '/datasets/OsloBorsDB')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Netfonds')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Netfonds",
+					"type": "LinkedServiceReference"
+				},
+				"type": "HttpFile",
+				"typeProperties": {
+					"format": {
+						"type": "TextFormat",
+						"columnDelimiter": ",",
+						"rowDelimiter": "",
+						"nullValue": "\\N",
+						"treatEmptyAsNull": true,
+						"skipLineCount": 0,
+						"firstRowAsHeader": false
+					},
+					"requestMethod": "Get"
+				}
+			}
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/NetfondsBS')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "hasaBS",
+					"type": "LinkedServiceReference"
+				},
+				"type": "AzureBlob",
+				"typeProperties": {
+					"format": {
+						"type": "TextFormat",
+						"columnDelimiter": ",",
+						"rowDelimiter": "",
+						"nullValue": "\\N",
+						"treatEmptyAsNull": true,
+						"skipLineCount": 0,
+						"firstRowAsHeader": false
+					},
+					"fileName": "ticker",
+					"folderPath": "raw/netfonds"
+				}
+			}
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/NetfondsDBstaging')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "hasaDB",
+					"type": "LinkedServiceReference"
+				},
+				"type": "AzureSqlTable",
+				"structure": [
+					{
+						"name": "name",
+						"type": "String"
+					},
+					{
+						"name": "paper",
+						"type": "String"
+					},
+					{
+						"name": "last",
+						"type": "String"
+					},
+					{
+						"name": "bid",
+						"type": "String"
+					},
+					{
+						"name": "offer",
+						"type": "String"
+					},
+					{
+						"name": "change",
+						"type": "String"
+					},
+					{
+						"name": "open",
+						"type": "String"
+					},
+					{
+						"name": "low",
+						"type": "String"
+					},
+					{
+						"name": "high",
+						"type": "String"
+					},
+					{
+						"name": "prev_price",
+						"type": "String"
+					},
+					{
+						"name": "volume",
+						"type": "String"
+					},
+					{
+						"name": "bid_depth_total",
+						"type": "String"
+					},
+					{
+						"name": "offer_depth_total",
+						"type": "String"
+					}
+				],
+				"typeProperties": {
+					"tableName": "[concat('[', 'hasa].[netfonds]')]"
+				}
+			}
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Netfonds_tickers')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Netfonds_tickers",
+					"type": "LinkedServiceReference"
+				},
+				"type": "HttpFile",
+				"typeProperties": {
+					"format": {
+						"type": "TextFormat",
+						"columnDelimiter": ",",
+						"rowDelimiter": "",
+						"nullValue": "\\N",
+						"treatEmptyAsNull": true,
+						"skipLineCount": 0,
+						"firstRowAsHeader": false
+					},
+					"requestMethod": "Get"
+				}
+			}
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/OsloBorsBlob')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "hasaBS",
+					"type": "LinkedServiceReference"
+				},
+				"type": "AzureBlob",
+				"structure": [
+					{
+						"name": "OSEBX",
+						"type": "String"
+					},
+					{
+						"name": "Siste",
+						"type": "String"
+					},
+					{
+						"name": "Høy",
+						"type": "String"
+					},
+					{
+						"name": "Lav",
+						"type": "String"
+					},
+					{
+						"name": "Offisielt omsatt (NOK)",
+						"type": "String"
+					}
+				],
+				"typeProperties": {
+					"format": {
+						"type": "TextFormat",
+						"columnDelimiter": ";",
+						"rowDelimiter": "",
+						"quoteChar": "\"",
+						"nullValue": "\\N",
+						"encodingName": null,
+						"treatEmptyAsNull": true,
+						"skipLineCount": 0,
+						"firstRowAsHeader": true
+					},
+					"fileName": "OsloBors5ar.csv",
+					"folderPath": "raw"
+				}
+			}
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/OsloBorsDB')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "hasaDB",
+					"type": "LinkedServiceReference"
+				},
+				"type": "AzureSqlTable",
+				"structure": [
+					{
+						"name": "OSEBX",
+						"type": "String"
+					},
+					{
+						"name": "siste",
+						"type": "Decimal"
+					},
+					{
+						"name": "lav",
+						"type": "Decimal"
+					},
+					{
+						"name": "høy",
+						"type": "Decimal"
+					},
+					{
+						"name": "omsetning",
+						"type": "String"
+					}
+				],
+				"typeProperties": {
+					"tableName": "[concat('[', 'hasa].[obx]')]"
+				}
+			}
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/OsloBorsWeb')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Oslo_bors",
+					"type": "LinkedServiceReference"
+				},
+				"type": "HttpFile",
+				"typeProperties": {
+					"format": {
+						"type": "TextFormat",
+						"columnDelimiter": ",",
+						"rowDelimiter": "",
+						"nullValue": "\\N",
+						"treatEmptyAsNull": true,
+						"skipLineCount": 0,
+						"firstRowAsHeader": true
+					},
+					"requestMethod": "Get"
+				}
+			}
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/hasaKV')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "AzureKeyVault",
+				"typeProperties": {
+					"baseUrl": "https://hasaKeyVault.vault.azure.net/"
+				}
+			}
+		}
+	]
+}
