@@ -433,7 +433,7 @@
 			"properties": {
 				"activities": [
 					{
-						"name": "Netfonds to blob",
+						"name": "Copy blob to staging",
 						"type": "Copy",
 						"dependsOn": [],
 						"policy": {
@@ -446,52 +446,8 @@
 						"userProperties": [],
 						"typeProperties": {
 							"source": {
-								"type": "HttpSource",
-								"httpRequestTimeout": "00:01:40"
-							},
-							"sink": {
-								"type": "BlobSink"
-							},
-							"enableStaging": false
-						},
-						"inputs": [
-							{
-								"referenceName": "Netfonds_tickers",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "NetfondsBS",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					},
-					{
-						"name": "Copy blob to staging",
-						"type": "Copy",
-						"dependsOn": [
-							{
-								"activity": "Netfonds to blob",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
 								"type": "BlobSource",
-								"recursive": true
+								"recursive": false
 							},
 							"sink": {
 								"type": "SqlSink",
@@ -518,7 +474,6 @@
 				"annotations": []
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/Netfonds_tickers')]",
 				"[concat(variables('factoryId'), '/datasets/NetfondsBS')]",
 				"[concat(variables('factoryId'), '/datasets/NetfondsDBstaging')]"
 			]
