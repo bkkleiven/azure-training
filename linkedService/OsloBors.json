@@ -4,7 +4,15 @@
 	"properties": {
 		"type": "AzureSqlDatabase",
 		"typeProperties": {
-			"connectionString": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=hasatestdbsrv.database.windows.net;Initial Catalog=hasatestdb"
+			"connectionString": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=hasasql.database.windows.net;Initial Catalog=hasaDB;User ID=hasaadmin",
+			"password": {
+				"type": "AzureKeyVaultSecret",
+				"store": {
+					"referenceName": "hasaKV",
+					"type": "LinkedServiceReference"
+				},
+				"secretName": "sqlserverpasswd"
+			}
 		}
 	}
 }
