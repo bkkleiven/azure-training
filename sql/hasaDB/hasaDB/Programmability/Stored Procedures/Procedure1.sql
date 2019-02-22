@@ -10,6 +10,6 @@ BEGIN
 			[open],         
 			[low],     
 			[high],		
-			[prev_price]        
+			[prev_price]      
 		FROM [hasa].[netfonds_staging]
 END
