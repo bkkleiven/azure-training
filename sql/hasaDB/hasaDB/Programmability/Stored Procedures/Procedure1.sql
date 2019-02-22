@@ -1,8 +1,8 @@
 ﻿CREATE PROCEDURE [hasa].[Add_staging_Netfonds]
 AS
 BEGIN
-	TRUNCATE TABLE [hasa].[Netfonds]
-	INSERT INTO [hasa].[Netfonds]
+	TRUNCATE TABLE [hasa].[netfonds]
+	INSERT INTO [hasa].[netfonds]
 		SELECT 
 			[name],
 			[paper],            
