@@ -1,5 +1,5 @@
 ﻿CREATE TABLE [hasa].[netfonds_staging] (
-    [name]              NVARCHAR(30) NULL,
+    [name]              NVARCHAR(40) NULL,
     [paper]             NVARCHAR(10) NULL,
     [last]              NVARCHAR(10) NULL,
     [bid]               NVARCHAR(10) NULL,
