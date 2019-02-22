@@ -6,6 +6,12 @@
 			"type": "LinkedServiceReference"
 		},
 		"type": "HttpFile",
+		"structure": [
+			{
+				"name": "Prop_0",
+				"type": "String"
+			}
+		],
 		"typeProperties": {
 			"format": {
 				"type": "TextFormat",
