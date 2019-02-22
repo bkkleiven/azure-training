@@ -3,48 +3,6 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Copy blob to staging",
-				"type": "Copy",
-				"dependsOn": [
-					{
-						"activity": "Copy Netfonds to blob storage",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"policy": {
-					"timeout": "0.00:05:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"typeProperties": {
-					"source": {
-						"type": "BlobSource",
-						"recursive": false
-					},
-					"sink": {
-						"type": "SqlSink",
-						"writeBatchSize": 10000
-					},
-					"enableStaging": false
-				},
-				"inputs": [
-					{
-						"referenceName": "NetfondsBS",
-						"type": "DatasetReference"
-					}
-				],
-				"outputs": [
-					{
-						"referenceName": "NetfondsDBStaging",
-						"type": "DatasetReference"
-					}
-				]
-			},
-			{
 				"name": "Copy Netfonds to blob storage",
 				"type": "Copy",
 				"policy": {
@@ -73,6 +31,66 @@
 				"outputs": [
 					{
 						"referenceName": "NetfondsBS",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "Netfondsblob to staging",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Copy Netfonds to blob storage",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.00:30:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"typeProperties": {
+					"source": {
+						"type": "BlobSource",
+						"recursive": true
+					},
+					"sink": {
+						"type": "SqlSink",
+						"writeBatchSize": 10000
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"columnMappings": {
+							"\"name": "name",
+							"paper": "paper",
+							"last": "last",
+							"bid": "bid",
+							"offer": "offer",
+							"change": "change",
+							"open": "open",
+							"low": "low",
+							"high": "high",
+							"prev_price": "prev_price",
+							"volume": "volume",
+							"bid_depth_total": "bid_depth_total",
+							"offer_depth_total\"": "offer_depth_total"
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "NetfondsBS",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "NetfondsDBStaging",
 						"type": "DatasetReference"
 					}
 				]
