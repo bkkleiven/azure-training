@@ -60,10 +60,14 @@
     <Folder Include="Tables" />
     <Folder Include="Security" />
     <Folder Include="Security\Scehma" />
+    <Folder Include="Programmability" />
+    <Folder Include="Programmability\Stored Procedures" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Tables\Netfonds.sql" />
     <Build Include="Tables\OSEBX.sql" />
     <Build Include="Security\Scehma\hasa.sql" />
+    <Build Include="Programmability\Stored Procedures\Procedure1.sql" />
+    <Build Include="Tables\Netfonds_staging.sql" />
   </ItemGroup>
 </Project>
