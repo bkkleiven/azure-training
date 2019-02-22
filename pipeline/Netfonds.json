@@ -5,6 +5,14 @@
 			{
 				"name": "Copy blob to staging",
 				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Copy Netfonds to blob storage",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "7.00:00:00",
 					"retry": 0,
@@ -32,6 +40,39 @@
 				"outputs": [
 					{
 						"referenceName": "NetfondsDBstaging",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "Copy Netfonds to blob storage",
+				"type": "Copy",
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"typeProperties": {
+					"source": {
+						"type": "HttpSource",
+						"httpRequestTimeout": "00:01:40"
+					},
+					"sink": {
+						"type": "BlobSink"
+					},
+					"enableStaging": false
+				},
+				"inputs": [
+					{
+						"referenceName": "Netfonds_tickers",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "NetfondsBS",
 						"type": "DatasetReference"
 					}
 				]
