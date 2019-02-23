@@ -94,6 +94,32 @@
 						"type": "DatasetReference"
 					}
 				]
+			},
+			{
+				"name": "Upload staging",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "Netfondsblob to staging",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"typeProperties": {
+					"storedProcedureName": "[hasa].[Add_staging_Netfonds]"
+				},
+				"linkedServiceName": {
+					"referenceName": "hasaDB",
+					"type": "LinkedServiceReference"
+				}
 			}
 		]
 	}
