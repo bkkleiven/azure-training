@@ -16,7 +16,7 @@
 				"skipLineCount": 0,
 				"firstRowAsHeader": false
 			},
-			"relativeUrl": "quotes/paperhistory.php?paper=EQNR.OSE&csv_format=csv",
+			"relativeUrl": "kurs.php?exchange=OSE&sec_types=&sectors=&ticks=&table=tab&sort=alphabetic",
 			"requestMethod": "Get"
 		}
 	}
