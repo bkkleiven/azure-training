@@ -52,7 +52,7 @@
 				"nullValue": "\\N",
 				"treatEmptyAsNull": true,
 				"skipLineCount": 0,
-				"firstRowAsHeader": true
+				"firstRowAsHeader": false
 			},
 			"requestMethod": "Get"
 		}
