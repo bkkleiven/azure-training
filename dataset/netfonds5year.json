@@ -5,6 +5,47 @@
 			"referenceName": "hasaDB",
 			"type": "LinkedServiceReference"
 		},
-		"type": "AzureSqlTable"
+		"type": "AzureSqlTable",
+		"structure": [
+			{
+				"name": "quote_date",
+				"type": "String"
+			},
+			{
+				"name": "paper",
+				"type": "String"
+			},
+			{
+				"name": "exch",
+				"type": "String"
+			},
+			{
+				"name": "open",
+				"type": "String"
+			},
+			{
+				"name": "high",
+				"type": "String"
+			},
+			{
+				"name": "low",
+				"type": "String"
+			},
+			{
+				"name": "close",
+				"type": "String"
+			},
+			{
+				"name": "volume",
+				"type": "String"
+			},
+			{
+				"name": "value",
+				"type": "String"
+			}
+		],
+		"typeProperties": {
+			"tableName": "[hasa].[netfonds_5year]"
+		}
 	}
 }
