@@ -1,0 +1,10 @@
+{
+	"name": "netfonds5year",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "hasaDB",
+			"type": "LinkedServiceReference"
+		},
+		"type": "AzureSqlTable"
+	}
+}
