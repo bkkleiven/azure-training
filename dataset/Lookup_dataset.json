@@ -1,0 +1,23 @@
+{
+	"name": "Lookup_dataset",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Netfonds_no",
+			"type": "LinkedServiceReference"
+		},
+		"type": "HttpFile",
+		"typeProperties": {
+			"format": {
+				"type": "TextFormat",
+				"columnDelimiter": ",",
+				"rowDelimiter": "",
+				"nullValue": "\\N",
+				"treatEmptyAsNull": true,
+				"skipLineCount": 0,
+				"firstRowAsHeader": false
+			},
+			"relativeUrl": "quotes/paperhistory.php?paper=EQNR.OSE&csv_format=csv",
+			"requestMethod": "Get"
+		}
+	}
+}
