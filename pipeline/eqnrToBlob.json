@@ -20,21 +20,7 @@
 					"sink": {
 						"type": "BlobSink"
 					},
-					"enableStaging": false,
-					"translator": {
-						"type": "TabularTranslator",
-						"columnMappings": {
-							"quote_date": "Prop_0",
-							"paper": "Prop_1",
-							"exch": "Prop_2",
-							"open": "Prop_3",
-							"high": "Prop_4",
-							"low": "Prop_5",
-							"close": "Prop_6",
-							"volume": "Prop_7",
-							"value": "Prop_8"
-						}
-					}
+					"enableStaging": false
 				},
 				"inputs": [
 					{
