@@ -1,0 +1,31 @@
+{
+	"name": "Netfonds_dataset",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Netfonds_no",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"paper": {
+				"type": "String"
+			}
+		},
+		"type": "HttpFile",
+		"typeProperties": {
+			"format": {
+				"type": "TextFormat",
+				"columnDelimiter": ",",
+				"rowDelimiter": "",
+				"nullValue": "\\N",
+				"treatEmptyAsNull": true,
+				"skipLineCount": 0,
+				"firstRowAsHeader": false
+			},
+			"relativeUrl": {
+				"value": "@concat(dataset().paper)",
+				"type": "Expression"
+			},
+			"requestMethod": "Get"
+		}
+	}
+}
