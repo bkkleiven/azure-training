@@ -16,6 +16,10 @@
 				"type": "String"
 			},
 			{
+				"name": "exch",
+				"type": "String"
+			},
+			{
 				"name": "open",
 				"type": "String"
 			},
