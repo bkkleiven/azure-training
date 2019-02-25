@@ -69,5 +69,6 @@
     <Build Include="Security\Scehma\hasa.sql" />
     <Build Include="Programmability\Stored Procedures\Procedure1.sql" />
     <Build Include="Tables\Netfonds_staging.sql" />
+    <Build Include="Tables\netfonds_5year.sql" />
   </ItemGroup>
 </Project>
