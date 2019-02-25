@@ -1,0 +1,75 @@
+{
+	"name": "Netfonds_full",
+	"properties": {
+		"activities": [
+			{
+				"name": "Lookup1",
+				"type": "Lookup",
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				}
+			},
+			{
+				"name": "ForEach1",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "Lookup1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"typeProperties": {
+					"items": {
+						"value": "@activity('Lookup1').output",
+						"type": "Expression"
+					},
+					"activities": [
+						{
+							"name": "Copy from netfonds",
+							"type": "Copy",
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"typeProperties": {
+								"source": {
+									"type": "HttpSource",
+									"httpRequestTimeout": "00:01:40"
+								},
+								"sink": {
+									"type": "SqlSink",
+									"writeBatchSize": 10000
+								},
+								"enableStaging": false
+							},
+							"inputs": [
+								{
+									"referenceName": "Netfonds_dataset",
+									"type": "DatasetReference",
+									"parameters": {
+										"paper": "@item()"
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "Netfondsdatabase",
+									"type": "DatasetReference"
+								}
+							]
+						}
+					]
+				}
+			}
+		]
+	}
+}
