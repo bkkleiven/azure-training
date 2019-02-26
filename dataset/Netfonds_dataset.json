@@ -15,11 +15,13 @@
 			"format": {
 				"type": "TextFormat",
 				"columnDelimiter": ",",
-				"rowDelimiter": "",
+				"rowDelimiter": "\n",
+				"quoteChar": "\"",
 				"nullValue": "\\N",
+				"encodingName": null,
 				"treatEmptyAsNull": true,
 				"skipLineCount": 0,
-				"firstRowAsHeader": false
+				"firstRowAsHeader": true
 			},
 			"relativeUrl": {
 				"value": "@concat('quotes/paperhistory.php?paper=',dataset().paper,'.OSE&csv_format=csv')",
