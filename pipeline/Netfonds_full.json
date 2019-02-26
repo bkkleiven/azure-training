@@ -72,7 +72,7 @@
 							],
 							"outputs": [
 								{
-									"referenceName": "Netfondsdatabase",
+									"referenceName": "netfonds5year",
 									"type": "DatasetReference"
 								}
 							]
