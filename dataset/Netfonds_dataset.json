@@ -22,7 +22,7 @@
 				"firstRowAsHeader": false
 			},
 			"relativeUrl": {
-				"value": "@concat(dataset().paper)",
+				"value": "@concat('quotes/paperhistory.php?paper=',dataset().paper,'.OSE&csv_format=csv')",
 				"type": "Expression"
 			},
 			"requestMethod": "Get"
