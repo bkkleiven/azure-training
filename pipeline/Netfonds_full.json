@@ -61,6 +61,14 @@
 									"writeBatchSize": 10000
 								},
 								"enableStaging": false,
+								"enableSkipIncompatibleRow": true,
+								"redirectIncompatibleRowSettings": {
+									"linkedServiceName": {
+										"referenceName": "hasaBS",
+										"type": "LinkedServiceReference"
+									},
+									"path": "raw/netfonds"
+								},
 								"translator": {
 									"type": "TabularTranslator",
 									"columnMappings": {
