@@ -36,7 +36,7 @@
 				],
 				"typeProperties": {
 					"items": {
-						"value": "@activity('Lookup1').output",
+						"value": "@activity('Lookup1').output.firstRow.paper",
 						"type": "Expression"
 					},
 					"activities": [
