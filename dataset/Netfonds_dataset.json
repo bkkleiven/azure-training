@@ -11,6 +11,44 @@
 			}
 		},
 		"type": "HttpFile",
+		"structure": [
+			{
+				"name": "quote_date",
+				"type": "String"
+			},
+			{
+				"name": "paper",
+				"type": "String"
+			},
+			{
+				"name": "exch",
+				"type": "String"
+			},
+			{
+				"name": "open",
+				"type": "String"
+			},
+			{
+				"name": "high",
+				"type": "String"
+			},
+			{
+				"name": "low",
+				"type": "String"
+			},
+			{
+				"name": "close",
+				"type": "String"
+			},
+			{
+				"name": "volume",
+				"type": "String"
+			},
+			{
+				"name": "value",
+				"type": "String"
+			}
+		],
 		"typeProperties": {
 			"format": {
 				"type": "TextFormat",
