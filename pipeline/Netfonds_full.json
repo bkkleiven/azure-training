@@ -60,7 +60,21 @@
 									"type": "SqlSink",
 									"writeBatchSize": 10000
 								},
-								"enableStaging": false
+								"enableStaging": false,
+								"translator": {
+									"type": "TabularTranslator",
+									"columnMappings": {
+										"quote_date": "quote_date",
+										"paper": "paper",
+										"exch": "exch",
+										"open": "open",
+										"high": "high",
+										"low": "low",
+										"close": "close",
+										"volume": "volume",
+										"value": "value"
+									}
+								}
 							},
 							"inputs": [
 								{
