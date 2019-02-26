@@ -89,7 +89,7 @@
 									"referenceName": "Netfonds_dataset",
 									"type": "DatasetReference",
 									"parameters": {
-										"paper": "@item()"
+										"paper": "@item().paper"
 									}
 								}
 							],
