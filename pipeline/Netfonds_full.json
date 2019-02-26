@@ -20,7 +20,8 @@
 					"dataset": {
 						"referenceName": "Lookup_dataset",
 						"type": "DatasetReference"
-					}
+					},
+					"firstRowOnly": false
 				}
 			},
 			{
